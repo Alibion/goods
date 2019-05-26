@@ -104,7 +104,7 @@ public class OrderServlet extends BaseServlet {
 		String p8_Url = props.getProperty("p8_Url");//在支付成功后，易宝会访问这个地址。
 		String p9_SAF = "";//送货地址
 		String pa_MP = "";//扩展信息
-		String pd_FrpId = req.getParameter("yh");//支付通道
+		String pd_FrpId = req.getParameter("");//支付通道
 		String pr_NeedResponse = "1";//应答机制，固定值1
 		
 		/*
@@ -227,7 +227,7 @@ public class OrderServlet extends BaseServlet {
 		}
 		orderService.updateStatus(oid, 5);//设置状态为取消！
 		req.setAttribute("code", "success");
-		req.setAttribute("msg", "您的订单已取消，您不后悔吗！");
+		req.setAttribute("msg", "您的订单已取消。");
 		return "f:/jsps/msg.jsp";		
 	}
 	

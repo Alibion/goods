@@ -27,7 +27,7 @@
  */
 var bar = new Q6MenuBar("bar", "网上书城");
 $(function() {
-	bar.colorStyle = 4;//指定配色样式，一共0,1,2,3,4
+	bar.colorStyle = 1;//指定配色样式，一共0,1,2,3,4
 	bar.config.imgDir = "<c:url value='/menu/img/'/>";//小工具所需图片的路径
 	bar.config.radioButton=true;//是否排斥，多个一级分类是否排斥
 

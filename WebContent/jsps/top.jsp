@@ -18,7 +18,7 @@
 	-->
 <style type="text/css">
 	body {
-		background: #15B69A;
+		background: #149fb8;
 		margin: 0px;
 		color: #ffffff;
 	}

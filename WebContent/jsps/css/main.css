@@ -1,8 +1,8 @@
 *{font-size:10pt;}
 body{text-align:center;}
-.table{width:1200px;height:100%;border:1px solid #15B69A;border-collapse: collapse;}
-.table td{border:1px solid #15B69A;}
-.trTop {background: #15B69A;}
+.table{width:1200px;height:100%;border:1px solid #149fb8;border-collapse: collapse;}
+.table td{border:1px solid #149fb8;}
+.trTop {background: #149fb8;}
 .tdTop {text-align: center; height: 100px;}
 .tdLeft{width: 190px;padding:5px;}
 .tdSearch{height: 45px; border-bottom-width: 0px; padding: 0px; margin: 0px;}

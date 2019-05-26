@@ -30,10 +30,7 @@ a {text-decoration: none;}
       <img src="http://localhost:8080/goods/images/shujia.jpg" border="0" style="border:1px #DCD8D7 solid;"/>
     </a>
     <br/>
-    <a href="http://subject.csdn.net/zhangxx/" target="_top">
-      <img src="" border="0"/>
-    </a>
-    <a href="http://www.csdn.net/" target="_top">
+    <a href="" target="_top">
       <img src="" border="0"/>
     </a>
     <a href="<c:url value='/adminjsps/login.jsp'/>" >
