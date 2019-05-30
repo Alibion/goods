@@ -65,7 +65,7 @@ public class CategoryDao {
 		/*
 		 * 1. 查询出所有一级分类
 		 */
-		String sql = "select * from t_category where pid is null order by orderBy";
+		String sql = "select * from category where pid is null order by orderBy";
 		List<Map<String,Object>> mapList = qr.query(sql, new MapListHandler());
 		
 		List<Category> parents = toCategoryList(mapList);
@@ -89,7 +89,7 @@ public class CategoryDao {
 	 * @throws SQLException 
 	 */
 	public List<Category> findByParent(String pid) throws SQLException {
-		String sql = "select * from t_category where pid=? order by orderBy";
+		String sql = "select * from category where pid=? order by orderBy";
 		List<Map<String,Object>> mapList = qr.query(sql, new MapListHandler(), pid);
 		return toCategoryList(mapList);
 	}
@@ -100,7 +100,7 @@ public class CategoryDao {
 	 * @throws SQLException 
 	 */
 	public void add(Category category) throws SQLException {
-		String sql = "insert into t_category(cid,cname,pid,`desc`) values(?,?,?,?)";
+		String sql = "insert into category(cid,cname,pid,`desc`) values(?,?,?,?)";
 		/*
 		 * 因为一级分类，没有parent，而二级分类有！
 		 * 我们这个方法，要兼容两次分类，所以需要判断
@@ -122,7 +122,7 @@ public class CategoryDao {
 		/*
 		 * 1. 查询出所有一级分类
 		 */
-		String sql = "select * from t_category where pid is null order by orderBy";
+		String sql = "select * from category where pid is null order by orderBy";
 		List<Map<String,Object>> mapList = qr.query(sql, new MapListHandler());
 		
 		return toCategoryList(mapList);
@@ -136,7 +136,7 @@ public class CategoryDao {
 	 * @throws SQLException 
 	 */
 	public Category load(String cid) throws SQLException {
-		String sql = "select * from t_category where cid=?";
+		String sql = "select * from category where cid=?";
 		return toCategory(qr.query(sql, new MapHandler(), cid));
 	}
 	
@@ -147,7 +147,7 @@ public class CategoryDao {
 	 * @throws SQLException 
 	 */
 	public void edit(Category category) throws SQLException {
-		String sql = "update t_category set cname=?, pid=?, `desc`=? where cid=?";
+		String sql = "update category set cname=?, pid=?, `desc`=? where cid=?";
 		String pid = null;
 		if(category.getParent() != null) {
 			pid = category.getParent().getCid();
@@ -163,7 +163,7 @@ public class CategoryDao {
 	 * @throws SQLException 
 	 */
 	public int findChildrenCountByParent(String pid) throws SQLException {
-		String sql = "select count(*) from t_category where pid=?";
+		String sql = "select count(*) from category where pid=?";
 		Number cnt = (Number)qr.query(sql, new ScalarHandler(), pid);
 		return cnt == null ? 0 : cnt.intValue();
 	}
@@ -174,7 +174,7 @@ public class CategoryDao {
 	 * @throws SQLException 
 	 */
 	public void delete(String cid) throws SQLException {
-		String sql = "delete from t_category where cid=?";
+		String sql = "delete from category where cid=?";
 		qr.update(sql, cid);
 	}
 }

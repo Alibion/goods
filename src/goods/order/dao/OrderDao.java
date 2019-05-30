@@ -30,7 +30,7 @@ public class OrderDao {
 	 * @throws SQLException 
 	 */
 	public int findStatus(String oid) throws SQLException {
-		String sql = "select status from t_order where oid=?";
+		String sql = "select status from g_order where oid=?";
 		Number number = (Number)qr.query(sql, new ScalarHandler(), oid);
 		return number.intValue();
 	}
@@ -42,7 +42,7 @@ public class OrderDao {
 	 * @throws SQLException
 	 */
 	public void updateStatus(String oid, int status) throws SQLException {
-		String sql = "update t_order set status=? where oid=?";
+		String sql = "update g_order set status=? where oid=?";
 		qr.update(sql, status, oid);
 	}
 	
@@ -53,7 +53,7 @@ public class OrderDao {
 	 * @throws SQLException
 	 */
 	public Order load(String oid) throws SQLException {
-		String sql = "select * from t_order where oid=?";
+		String sql = "select * from g_order where oid=?";
 		Order order = qr.query(sql, new BeanHandler<Order>(Order.class), oid);
 		loadOrderItem(order);//为当前订单加载它的所有订单条目
 		return order;
@@ -68,7 +68,7 @@ public class OrderDao {
 		/*
 		 * 1. 插入订单
 		 */
-		String sql = "insert into t_order values(?,?,?,?,?,?)";
+		String sql = "insert into g_order values(?,?,?,?,?,?)";
 		Object[] params = {order.getOid(), order.getOrdertime(),
 				order.getTotal(),order.getStatus(),order.getAddress(),
 				order.getOwner().getUid()};
@@ -79,7 +79,7 @@ public class OrderDao {
 		 * 多个条目就对应Object[][]
 		 * 执行批处理，完成插入订单条目
 		 */
-		sql = "insert into t_orderitem values(?,?,?,?,?,?,?,?)";
+		sql = "insert into orderitem values(?,?,?,?,?,?,?,?)";
 		int len = order.getOrderItemList().size();
 		Object[][] objs = new Object[len][];
 		for(int i = 0; i < len; i++){
@@ -162,13 +162,13 @@ public class OrderDao {
 		/*
 		 * 3. 总记录数 
 		 */
-		String sql = "select count(*) from t_order" + whereSql;
+		String sql = "select count(*) from g_order" + whereSql;
 		Number number = (Number)qr.query(sql, new ScalarHandler(), params.toArray());
 		int tr = number.intValue();//得到了总记录数
 		/*
 		 * 4. 得到beanList，即当前页记录
 		 */
-		sql = "select * from t_order" + whereSql + " order by ordertime desc limit ?,?";
+		sql = "select * from g_order" + whereSql + " order by ordertime desc limit ?,?";
 		params.add((pc-1) * ps);//当前页首行记录的下标
 		params.add(ps);//一共查询几行，就是每页记录数
 		
@@ -200,11 +200,11 @@ public class OrderDao {
 	 */
 	private void loadOrderItem(Order order) throws SQLException {
 		/*
-		 * 1. 给sql语句select * from t_orderitem where oid=?
+		 * 1. 给sql语句select * from orderitem where oid=?
 		 * 2. 执行之，得到List<OrderItem>
 		 * 3. 设置给Order对象
 		 */
-		String sql = "select * from t_orderitem where oid=?";
+		String sql = "select * from orderitem where oid=?";
 		List<Map<String,Object>> mapList = qr.query(sql, new MapListHandler(), order.getOid());
 		List<OrderItem> orderItemList = toOrderItemList(mapList);
 		

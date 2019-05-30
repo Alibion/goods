@@ -27,20 +27,20 @@ public class BookDao {
 	 * @throws SQLException 
 	 */
 	public void delete(String bid) throws SQLException {
-		String sql = "delete from t_book where bid=?";
+		String sql = "delete from book where bid=?";
 		qr.update(sql, bid);
 	}
 	
 	/**
 	 * 修改图书
 	 * @param book
-	 * 		String sql = "insert into t_book(bid,bname,author,price,currPrice," +
+	 * 		String sql = "insert into book(bid,bname,author,price,currPrice," +
 				"discount,press,publishtime,edition,pageNum,wordNum,printtime," +
 				"booksize,paper,cid,image_w,image_b)" +
 	 * @throws SQLException 
 	 */
 	public void edit(Book book) throws SQLException {
-		String sql = "update t_book set bname=?,author=?,price=?,currPrice=?," +
+		String sql = "update book set bname=?,author=?,price=?,currPrice=?," +
 				"discount=?,press=?,publishtime=?,edition=?,pageNum=?,wordNum=?," +
 				"printtime=?,booksize=?,paper=?,cid=? where bid=?";
 		Object[] params = {book.getBname(),book.getAuthor(),
@@ -59,7 +59,7 @@ public class BookDao {
 	 * @throws SQLException
 	 */
 	public Book findByBid(String bid) throws SQLException {
-		String sql = "SELECT * FROM t_book b, t_category c WHERE b.cid=c.cid AND b.bid=?";
+		String sql = "SELECT * FROM book b, category c WHERE b.cid=c.cid AND b.bid=?";
 		// 一行记录中，包含了很多的book的属性，还有一个cid属性
 		Map<String,Object> map = qr.query(sql, new MapHandler(), bid);
 		// 把Map中除了cid以外的其他属性映射到Book对象中
@@ -85,7 +85,7 @@ public class BookDao {
 	 * @throws SQLException
 	 */
 	public int findBookCountByCategory(String cid) throws SQLException {
-		String sql = "select count(*) from t_book where cid=?";
+		String sql = "select count(*) from book where cid=?";
 		Number cnt = (Number)qr.query(sql, new ScalarHandler(), cid);
 		return cnt == null ? 0 : cnt.intValue();
 	}
@@ -200,13 +200,13 @@ public class BookDao {
 		/*
 		 * 3. 总记录数 
 		 */
-		String sql = "select count(*) from t_book" + whereSql;
+		String sql = "select count(*) from book" + whereSql;
 		Number number = (Number)qr.query(sql, new ScalarHandler(), params.toArray());
 		int tr = number.intValue();//得到了总记录数
 		/*
 		 * 4. 得到beanList，即当前页记录
 		 */
-		sql = "select * from t_book" + whereSql + " order by orderBy limit ?,?";
+		sql = "select * from book" + whereSql + " order by orderBy limit ?,?";
 		params.add((pc-1) * ps);//当前页首行记录的下标
 		params.add(ps);//一共查询几行，就是每页记录数
 		
@@ -234,7 +234,7 @@ public class BookDao {
 	 * @throws SQLException 
 	 */
 	public void add(Book book) throws SQLException {
-		String sql = "insert into t_book(bid,bname,author,price,currPrice," +
+		String sql = "insert into book(bid,bname,author,price,currPrice," +
 				"discount,press,publishtime,edition,pageNum,wordNum,printtime," +
 				"booksize,paper,cid,image_w,image_b)" +
 				" values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";

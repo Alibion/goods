@@ -33,7 +33,7 @@ $(function() {
 	<span class="spanOid">编号：${order.oid }</span>
 </div>
 <form action="<c:url value='/OrderServlet'/>" method="post" id="form1" target="_top">
-<input type="hidden" name="method" value="payment"/>
+<input type="hidden" name="method" value="back"/>
 <input type="hidden" name="oid" value="${order.oid }"/>
 <div class="divBank">
 	<div class="divText">选择网上银行</div>

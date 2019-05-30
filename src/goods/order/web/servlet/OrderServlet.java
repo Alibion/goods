@@ -86,13 +86,12 @@ public class OrderServlet extends BaseServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
+	/*
 	public String payment(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		Properties props = new Properties();
 		props.load(this.getClass().getClassLoader().getResourceAsStream("payment.properties"));
-		/*
-		 * 1. 准备13个参数
-		 */
+		//准备参数
 		String p0_Cmd = "Buy";//业务类型，固定值Buy
 		String p1_MerId = props.getProperty("p1_MerId");//商号编码，在易宝的唯一标识
 		String p2_Order = req.getParameter("oid");//订单编码
@@ -107,20 +106,13 @@ public class OrderServlet extends BaseServlet {
 		String pd_FrpId = req.getParameter("");//支付通道
 		String pr_NeedResponse = "1";//应答机制，固定值1
 		
-		/*
-		 * 2. 计算hmac
-		 * 需要13个参数
-		 * 需要keyValue
-		 * 需要加密算法
-		 */
+		//计算hmac
 		String keyValue = props.getProperty("keyValue");
 		String hmac = PaymentUtil.buildHmac(p0_Cmd, p1_MerId, p2_Order, p3_Amt,
 				p4_Cur, p5_Pid, p6_Pcat, p7_Pdesc, p8_Url, p9_SAF, pa_MP,
 				pd_FrpId, pr_NeedResponse, keyValue);
 		
-		/*
-		 * 3. 重定向到易宝的支付网关
-		 */
+		//发送到易宝
 		StringBuilder sb = new StringBuilder("https://www.yeepay.com/app-merchant-proxy/node");
 		sb.append("?").append("p0_Cmd=").append(p0_Cmd);
 		sb.append("&").append("p1_MerId=").append(p1_MerId);
@@ -140,7 +132,7 @@ public class OrderServlet extends BaseServlet {
 		resp.sendRedirect(sb.toString());
 		return null;
 	}
-	
+	*/
 	/**
 	 * 回馈方法
 	 * 当支付成功时，易宝会访问这里
@@ -157,7 +149,7 @@ public class OrderServlet extends BaseServlet {
 			throws ServletException, IOException {
 		/*
 		 * 1. 获取12个参数
-		 */
+		 
 		String p1_MerId = req.getParameter("p1_MerId");
 		String r0_Cmd = req.getParameter("r0_Cmd");
 		String r1_Code = req.getParameter("r1_Code");
@@ -170,20 +162,20 @@ public class OrderServlet extends BaseServlet {
 		String r8_MP = req.getParameter("r8_MP");
 		String r9_BType = req.getParameter("r9_BType");
 		String hmac = req.getParameter("hmac");
-		/*
+		
 		 * 2. 获取keyValue
-		 */
+		 
 		Properties props = new Properties();
 		props.load(this.getClass().getClassLoader().getResourceAsStream("payment.properties"));
 		String keyValue = props.getProperty("keyValue");
-		/*
+		
 		 * 3. 调用PaymentUtil的校验方法来校验调用者的身份
 		 *   >如果校验失败：保存错误信息，转发到msg.jsp
 		 *   >如果校验通过：
 		 *     * 判断访问的方法是重定向还是点对点，如果要是重定向
 		 *     修改订单状态，保存成功信息，转发到msg.jsp
 		 *     * 如果是点对点：修改订单状态，返回success
-		 */
+		 
 		boolean bool = PaymentUtil.verifyCallback(hmac, p1_MerId, r0_Cmd, r1_Code, r2_TrxId,
 				r3_Amt, r4_Cur, r5_Pid, r6_Order, r7_Uid, r8_MP, r9_BType,
 				keyValue);
@@ -191,7 +183,10 @@ public class OrderServlet extends BaseServlet {
 			req.setAttribute("code", "error");
 			req.setAttribute("msg", "无效的签名，支付失败！（你不是好人）");
 			return "f:/jsps/msg.jsp";
-		}
+		}*/
+		String r1_Code = "1";
+		String r6_Order= req.getParameter("oid");//订单编码
+		String r9_BType= "1";
 		if(r1_Code.equals("1")) {
 			orderService.updateStatus(r6_Order, 2);
 			if(r9_BType.equals("1")) {

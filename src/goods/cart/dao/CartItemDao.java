@@ -51,7 +51,7 @@ public class CartItemDao {
 		/*
 		 * 3. 生成sql语句
 		 */
-		String sql = "select * from t_cartitem c, t_book b where c.bid=b.bid and " + whereSql;
+		String sql = "select * from cartitem c, book b where c.bid=b.bid and " + whereSql;
 		/*
 		 * 4. 执行sql，返回List<CartItem>
 		 */
@@ -65,7 +65,7 @@ public class CartItemDao {
 	 * @throws SQLException 
 	 */
 	public CartItem findByCartItemId(String cartItemId) throws SQLException {
-		String sql = "select * from t_cartItem c, t_book b where c.bid=b.bid and c.cartItemId=?";
+		String sql = "select * from cartItem c, book b where c.bid=b.bid and c.cartItemId=?";
 		Map<String,Object> map = qr.query(sql, new MapHandler(), cartItemId);
 		return toCartItem(map);
 	}
@@ -83,7 +83,7 @@ public class CartItemDao {
 		 */
 		Object[] cartItemIdArray = cartItemIds.split(",");
 		String whereSql = toWhereSql(cartItemIdArray.length);
-		String sql = "delete from t_cartitem where " + whereSql;
+		String sql = "delete from cartitem where " + whereSql;
 		qr.update(sql, cartItemIdArray);//其中cartItemIdArray必须是Object类型的数组！
 	}
 	
@@ -92,7 +92,7 @@ public class CartItemDao {
 	 * @throws SQLException 
 	 */
 	public CartItem findByUidAndBid(String uid, String bid) throws SQLException {
-		String sql = "select * from t_cartitem where uid=? and bid=?";
+		String sql = "select * from cartitem where uid=? and bid=?";
 		Map<String,Object> map = qr.query(sql, new MapHandler(), uid, bid);
 		CartItem cartItem = toCartItem(map);
 		return cartItem;
@@ -105,7 +105,7 @@ public class CartItemDao {
 	 * @throws SQLException 
 	 */
 	public void updateQuantity(String cartItemId, int quantity) throws SQLException {
-		String sql = "update t_cartitem set quantity=? where cartItemId=?";
+		String sql = "update cartitem set quantity=? where cartItemId=?";
 		qr.update(sql, quantity, cartItemId);
 	}
 	
@@ -115,7 +115,7 @@ public class CartItemDao {
 	 * @throws SQLException 
 	 */
 	public void addCartItem(CartItem cartItem) throws SQLException {
-		String sql = "insert into t_cartitem(cartItemId, quantity, bid, uid)" +
+		String sql = "insert into cartitem(cartItemId, quantity, bid, uid)" +
 				" values(?,?,?,?)";
 		Object[] params = {cartItem.getCartItemId(), cartItem.getQuantity(),
 				cartItem.getBook().getBid(), cartItem.getUser().getUid()};
@@ -154,7 +154,7 @@ public class CartItemDao {
 	 * @throws SQLException 
 	 */
 	public List<CartItem> findByUser(String uid) throws SQLException {
-		String sql = "select * from t_cartitem c, t_book b where c.bid=b.bid and uid=? order by c.orderBy";
+		String sql = "select * from cartitem c, book b where c.bid=b.bid and uid=? order by c.orderBy";
 		List<Map<String,Object>> mapList = qr.query(sql, new MapListHandler(), uid);
 		return toCartItemList(mapList);
 	}

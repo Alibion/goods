@@ -27,7 +27,7 @@ public class UserDao {
 	 * @throws SQLException
 	 */
 	public boolean findByUidAndPassword(String uid, String password) throws SQLException {
-		String sql = "select count(*) from t_user where uid=? and loginpass=?";
+		String sql = "select count(*) from user where uid=? and loginpass=?";
 		Number number = (Number) qr.query(sql, new ScalarHandler(), uid, password);
 		return number.intValue() > 0;
 	}
@@ -40,7 +40,7 @@ public class UserDao {
 	 * @throws SQLException
 	 */
 	public void updatePassword(String uid, String password) throws SQLException {
-		String sql = "update t_user set loginpass=? where uid=?";
+		String sql = "update user set loginpass=? where uid=?";
 		qr.update(sql, password, uid);
 	}
 
@@ -53,7 +53,7 @@ public class UserDao {
 	 * @throws SQLException
 	 */
 	public User findByLoginnameAndLoginpass(String loginname, String loginpass) throws SQLException {
-		String sql = "select * from t_user where loginname=? and loginpass=?";
+		String sql = "select * from user where loginname=? and loginpass=?";
 		return qr.query(sql, new BeanHandler<User>(User.class), loginname, loginpass);
 	}
 
@@ -65,7 +65,7 @@ public class UserDao {
 	 * @throws SQLException
 	 */
 	public User findByCode(String code) throws SQLException {
-		String sql = "select * from t_user where activationCode=?";
+		String sql = "select * from user where activationCode=?";
 		return qr.query(sql, new BeanHandler<User>(User.class), code);
 	}
 
@@ -77,7 +77,7 @@ public class UserDao {
 	 * @throws SQLException
 	 */
 	public void updateStatus(String uid, boolean status) throws SQLException {
-		String sql = "update t_user set status=? where uid=?";
+		String sql = "update user set status=? where uid=?";
 		qr.update(sql, status, uid);
 	}
 
@@ -89,7 +89,7 @@ public class UserDao {
 	 * @throws SQLException
 	 */
 	public boolean ajaxValidateLoginname(String loginname) throws SQLException {
-		String sql = "select count(1) from t_user where loginname=?";
+		String sql = "select count(1) from user where loginname=?";
 		Number number = (Number) qr.query(sql, new ScalarHandler(), loginname);
 		return number.intValue() == 0;
 	}
@@ -102,7 +102,7 @@ public class UserDao {
 	 * @throws SQLException
 	 */
 	public boolean ajaxValidateEmail(String email) throws SQLException {
-		String sql = "select count(1) from t_user where email=?";
+		String sql = "select count(1) from user where email=?";
 		Number number = (Number) qr.query(sql, new ScalarHandler(), email);
 		return number.intValue() == 0;
 	}
@@ -114,7 +114,7 @@ public class UserDao {
 	 * @throws SQLException
 	 */
 	public void add(User user) throws SQLException {
-		String sql = "insert into t_user values(?,?,?,?,?,?)";
+		String sql = "insert into user values(?,?,?,?,?,?)";
 		Object[] params = { user.getUid(), user.getLoginname(), user.getLoginpass(), user.getEmail(), "1",
 				user.getActivationCode() };
 		qr.update(sql, params);

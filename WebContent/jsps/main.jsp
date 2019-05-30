@@ -6,7 +6,7 @@
 <html>
   <head>
     
-    <title>main</title>
+    <title>网上书城系统</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
