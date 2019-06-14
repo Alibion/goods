@@ -9,7 +9,7 @@ td{height: 25px;}
 .divBookDesc{float:left;}
 .spanPrice {text-decoration:line-through;}
 .hr1{margin-left: 50px; height: 1px; color: #dcdcdc;}
-.price_n {color: #c30; font-weight: bold; padding-right: 10px; font-family: Arial; font-size: 20pt; }
+.price_n {color: black; font-weight: bold; padding-right: 10px; font-family: Arial; font-size: 20pt; }
 ul {list-style: none;}
 li {margin: 10px;}
 #btn {background: url(/goods/images/all.png) no-repeat;display: inline-block;background-position: 0 -70px;height: 36px;width: 146px;}

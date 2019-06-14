@@ -36,15 +36,15 @@
   
   <body>
 	<div class="main">
-	  <div><a href="http://localhost:8080/goods"><img src="<c:url value='/images/back.jpg'/>" /></a></div>
+	  <div><a href="http://localhost:8080/goods"><input type="button" value="主页"/></a></div>
 	  <div>
-	    <div class="imageDiv"><img class="img" src="<c:url value='/images/zj.png'/>"/></div>
         <div class="login1">
 	      <div class="login2">
             <div class="loginTopDiv">
-              <span class="loginTop">会员登录</span>
+              <span class="loginTop">会员登录</span>&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <span>
-                <a href="<c:url value='/jsps/user/regist.jsp'/>" class="registBtn"></a>
+                <a href="<c:url value='/jsps/user/regist.jsp'/>"><input type="button" value="注册"/></a>
               </span>
             </div>
             <div>
@@ -86,7 +86,7 @@
                     <tr>
                       <td>&nbsp;</td>
                       <td align="left">
-                        <input type="image" id="submit" src="<c:url value='/images/login1.jpg'/>" class="loginBtn"/>
+                        <input type="submit" id="submit" value="登录" class="loginBtn"/>
                       </td>
                     </tr>																				
                  </table>

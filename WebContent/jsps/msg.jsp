@@ -73,7 +73,6 @@ a:hover {color:#FF6600; text-decoration: underline;}
 	</div>
 	<div class="divContent">
 	  <div style="margin: 20px;">
-		<img style="float: left; margin-right: 30px;" src="<c:url value='${img }'/>" width="150"/>
 		<span style="font-size: 30px; color: #c30; font-weight: 900;">${msg }</span>
 		<br/>
 		<br/>

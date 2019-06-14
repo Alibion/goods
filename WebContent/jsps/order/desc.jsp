@@ -78,7 +78,7 @@
 		</div>
 		<div style="margin: 10px 10px 10px 550px;">
 			<span style="font-weight: 900; font-size: 15px;">合计金额：</span>
-			<span class="price_t">&yen;${order.total }</span><br/>
+			<span class="price_t">${order.total }元</span><br/>
 <c:if test="${order.status eq 1 }">
 	<a href="<c:url value='/OrderServlet?method=paymentPre&oid=${order.oid }'/>" class="pay"></a><br/>
 </c:if>

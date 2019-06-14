@@ -65,8 +65,8 @@
 				<input type="hidden" name="method" value="add"/>
 				<input type="hidden" name="bid" value="${book.bid }"/>
   				我要买：<input id="cnt" style="width: 40px;text-align: center;" type="text" name="quantity" value="1"/>件
-  			</form>
-  			<a id="btn" href="javascript:$('#form1').submit();"></a>
+  			</form>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  			<a href="javascript:$('#form1').submit();"><input type="button" value="购买"/></a>
   		</div>
 	</div>
   </div>

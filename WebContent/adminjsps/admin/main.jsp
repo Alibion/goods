@@ -6,7 +6,7 @@
 <html>
   <head>
     
-    <title>main.jsp</title>
+    <title>管理员后台</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">

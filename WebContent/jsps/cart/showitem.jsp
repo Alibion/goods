@@ -32,14 +32,27 @@
 		});
 		$("#total").text(round(total, 2));
 	});
+		
+	//检验收货地址为空
+	function checkadd(){
+        var address=$(addr).val();
+        if(address !=""){
+             $("#Note").css("display","none");
+             return true;
+            }else{
+              $("#Note").css("display","inline-block");
+              return false;
+        }
+        
+    }
 </script>
   </head>
   
   <body>
   <c:choose>
-  	<c:when test="${empty cartItemList }">嘻嘻~</c:when>
+  	<c:when test="${empty cartItemList }">为空</c:when>
   	<c:otherwise>
-<form id="form1" action="<c:url value='/OrderServlet'/>" method="post">
+<form id="form1" action="<c:url value='/OrderServlet'/>" method="post" onsubmit="return checkadd()">
 	<input type="hidden" name="cartItemIds" value="${cartItemIds }"/>
 	<input type="hidden" name="method" value="createOrder"/>
 <table width="95%" align="center" cellpadding="0" cellspacing="0">
@@ -66,7 +79,7 @@
 		<td>&yen;${cartItem.book.currPrice }</td>
 		<td>${cartItem.quantity }</td>
 		<td>
-			<span class="price_n">&yen;<span class="subtotal">${cartItem.subtotal }</span></span>
+			<span class="price_n"><span class="subtotal">${cartItem.subtotal }</span>元</span>
 		</td>
 	</tr>
 </c:forEach>
@@ -82,7 +95,7 @@
 
 	<tr>
 		<td colspan="6" align="right">
-			<span>总计：</span><span class="price_t">&yen;<span id="total">${total }</span></span>
+			<span>总计：</span><span class="price_t"><span id="total">${total }</span>元</span>
 		</td>
 	</tr>
 	<tr>
@@ -90,12 +103,12 @@
 	</tr>
 	<tr>
 		<td colspan="6">
-			<input id="addr" type="text" name="address" value="山东省 滨州市 滨城区 "/>
+			<input id="addr" type="text" name="address"/><span id="Note" style="color:red;display:none;">收货地址不能为空</span> 
 		</td>
 	</tr>
 	<tr>
 		<td style="border-top-width: 4px;" colspan="5" align="right">
-			<a id="linkSubmit" href="javascript:$('#form1').submit();">提交订单</a>
+			<a href="javascript:$('#form1').submit();"><input type="button" value="提交订单"/></a>
 		</td>
 	</tr>
 </table>

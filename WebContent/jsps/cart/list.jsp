@@ -193,11 +193,8 @@ function jiesuan() {
 	<c:when test="${empty cartItemList }">
 	<table width="95%" align="center" cellpadding="0" cellspacing="0">
 		<tr>
-			<td align="right">
-				<img align="top" src="<c:url value='/images/icon_empty.png'/>"/>
-			</td>
 			<td>
-				<span class="spanEmpty">您的购物车中暂时没有商品</span>
+				<span class="spanEmpty">购物车为空</span>
 			</td>
 		</tr>
 	</table>  
@@ -264,12 +261,12 @@ function jiesuan() {
 			<a href="javascript:batchDelete();">批量删除</a>
 		</td>
 		<td colspan="3" align="right" class="tdTotal">
-			<span>总计：</span><span class="price_t">&yen;<span id="total"></span></span>
+			<span>总计：</span><span class="price_t"><span id="total"></span>元</span>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="7" align="right">
-			<a href="javascript:jiesuan();" id="jiesuan" class="jiesuan"></a>
+			<a href="javascript:jiesuan();" id="jiesuan" ><input type="button" value="结算"/></a>
 		</td>
 	</tr>
 </table>

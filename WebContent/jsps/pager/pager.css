@@ -1,7 +1,7 @@
 .bold {font-weight: 900;}
 .divBody {
 	background: url(/goods/images/paginating_bg.png) repeat-x;
-	border-top: 2px solid #FE7C2C;
+	border-top: 2px solid #0080ff;
 	height: 35px;
 	width: 100%;
 	text-align: right;
@@ -11,9 +11,9 @@
 	margin-right: 15px;
 }
 .spanBtnSelect {
-	border: 1px solid #F75A00; 
+	border: 1px solid #0080ff; 
 	color: #FFFFFF;
-	background-color: #FE7C2C; 
+	background-color: #0080ff; 
 	text-align:center; 
 	padding: 4px 8px 3px 8px;
 	text-decoration: none;
@@ -38,8 +38,8 @@
 	font-family: Arial;
 }
 .aBtn:HOVER {
-	border: 1px solid #F75A00;
-	background-color: #FE7C2C; 
+	border: 1px solid #0080ff;
+	background-color: #0080ff; 
 	color: #FFFFFF;
 }
 

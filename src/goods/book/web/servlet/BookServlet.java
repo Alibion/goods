@@ -171,7 +171,7 @@ public class BookServlet extends BaseServlet {
 	}
 	
 	/**
-	 * 按图名查
+	 * 按书名查
 	 * @param req
 	 * @param resp
 	 * @return
@@ -192,16 +192,20 @@ public class BookServlet extends BaseServlet {
 		 * 3. 获取查询条件，本方法就是cid，即分类的id
 		 */
 		String bname = req.getParameter("bname");
-		/*
-		 * 4. 使用pc和cid调用service#findByCategory得到PageBean
-		 */
-		PageBean<Book> pb = bookService.findByBname(bname, pc);
-		/*
-		 * 5. 给PageBean设置url，保存PageBean，转发到/jsps/book/list.jsp
-		 */
-		pb.setUrl(url);
-		req.setAttribute("pb", pb);
-		return "f:/jsps/book/list.jsp";
+		if(bname!=null) {
+			/*
+			 * 4. 使用pc和cid调用service#findByCategory得到PageBean
+			 */
+			PageBean<Book> pb = bookService.findByBname(bname, pc);
+			/*
+			 * 5. 给PageBean设置url，保存PageBean，转发到/jsps/book/list.jsp
+			 */
+			pb.setUrl(url);
+			req.setAttribute("pb", pb);
+			return "f:/jsps/book/list.jsp";
+		}else {
+			return null;
+		}
 	}
 	
 	/**

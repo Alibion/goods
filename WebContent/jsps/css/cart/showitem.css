@@ -5,8 +5,8 @@ td {border-color: #efeae5;border-style: solid;border-width: 0;border-bottom-widt
 a {text-decoration: none; color: #018BD3;}
 a:visited {color: #018BD3;}
 a:hover {color:#FF6600; text-decoration: underline;}
-.price_n {color: #c30;font-weight: bold;padding-right: 10px;font-family: Arial;}
-.price_t {color: #c30;font-weight: bold;padding-right: 10px;font-family: Arial;font-size: 15pt;}
+.price_n {color: black;font-weight: bold;padding-right: 10px;font-family: Arial;}
+.price_t {color: black;font-weight: bold;padding-right: 10px;font-family: Arial;font-size: 15pt;}
 a.linkImage {display: inline-block;border: 1px solid #ffffff;}
 a.linkImage:HOVER {display: inline-block;border: 1px solid #d0d0d0;}
 a.link2:active {border: 1px dotted #404040;}

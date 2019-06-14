@@ -5,7 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>按图名查询</title>
+    <title>按书名查询</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -22,12 +22,12 @@
 		margin-left:200px;
 		color: #404040;
 	}
-	input {
+	.text {
 		width: 300px;
 		height: 30px;
 		border-style:solid;
 		margin:0px;
-		border-color: #15B69A;
+		border-color: #149fb8;
 	}
 	a {
 		text-transform:none;
@@ -47,9 +47,9 @@
   <body>
     <form action="<c:url value='/BookServlet'/>" method="get" target="body" id="form1">
     	<input type="hidden" name="method" value="findByBname"/>
-    	<input type="text" name="bname"/>
+    	<input type="text" name="bname" class="text"/>
     	<span>
-    		<a href="javascript:document.getElementById('form1').submit();"><img align="top" border="0" src="../images/btn.bmp"/></a>
+    		<a href="javascript:document.getElementById('form1').submit();"><input type="button" value="搜索"/></a>
     		<a href="<c:url value='/jsps/gj.jsp'/>" style="font-size: 10pt; color: #404040;" target="body">高级搜索</a>
     	</span>
     </form>
